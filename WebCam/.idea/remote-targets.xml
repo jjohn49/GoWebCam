@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="hughpi@10.0.0.58:22" type="ssh/sftp" uuid="3fe1b58d-a4c9-4348-a97f-e62a2de9241b">
+        <config>
+          <option name="projectRootOnTarget" value="$PROJECT_DIR$/../../../../../hughpi/Projects" />
+          <option name="serverName" value="hughpi@10.0.0.58:22 password" />
+          <option name="useRsync" value="true" />
+        </config>
+        <ContributedStateBase type="GoLanguageRuntime">
+          <config>
+            <option name="goPath" value="$PROJECT_DIR$/../../../../../hughpi/go" />
+            <option name="goRoot" value="/usr/local/go/bin/go" />
+            <option name="goVersion" value="go1.22.2 linux/arm" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>

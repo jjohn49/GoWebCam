@@ -19,14 +19,13 @@ var (
 	frames <-chan []byte
 )
 
+var rec = FacialRecognition.GetFacialRecognizer()
+
 func imageServ(w http.ResponseWriter, req *http.Request) {
 	mimeWriter := multipart.NewWriter(w)
 	w.Header().Set("Content-Type", fmt.Sprintf("multipart/x-mixed-replace; boundary=%s", mimeWriter.Boundary()))
 	partHeader := make(textproto.MIMEHeader)
 	partHeader.Add("Content-Type", "image/jpeg")
-
-	rec := FacialRecognition.GetFacialRecognizer()
-	defer rec.Close()
 
 	var frame []byte
 	for frame = range frames {
@@ -39,7 +38,7 @@ func imageServ(w http.ResponseWriter, req *http.Request) {
 		person, _ := rec.RecognizeSingle(<-frames)
 
 		if person != nil {
-			catID := rec.Classify(person.Descriptor)
+			catID := rec.ClassifyThreshold(person.Descriptor, 0.4)
 			fmt.Println(catID)
 		} else {
 			fmt.Println("No Person Found")

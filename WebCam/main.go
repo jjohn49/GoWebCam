@@ -39,9 +39,13 @@ func imageServ(w http.ResponseWriter, req *http.Request) {
 
 		if person != nil {
 			catID := rec.ClassifyThreshold(person.Descriptor, 0.4)
-			fmt.Println(catID)
-		} else {
-			fmt.Println("No Person Found")
+			if catID < 0 {
+				fmt.Println("Detected an unrecognizable Person")
+			} else {
+				fmt.Printf("Recognized person with ID of: %d \n", catID)
+				//Unlock function
+			}
+
 		}
 
 		if _, err := partWriter.Write(frame); err != nil {

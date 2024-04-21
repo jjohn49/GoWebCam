@@ -58,7 +58,7 @@ func GetFacialRecognizer() *face.Recognizer {
 	for _, f := range faces {
 		samples = append(samples, f.Descriptor)
 		// Each face is unique on that image so goes to its own category.
-		cats = append(cats, int32(22))
+		cats = append(cats, int32(0))
 	}
 	// Name the categories, i.e. people on the image.
 	//labels := []string{
@@ -80,8 +80,6 @@ func GetFacialRecognizer() *face.Recognizer {
 	if catID < 0 {
 		log.Fatalf("Can't classify")
 	}
-	// Finally print the classified label. It should be "Nayoung".
-	//fmt.Println(labels[catID])
 
 	return rec
 }
